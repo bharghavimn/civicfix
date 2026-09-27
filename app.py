@@ -17,6 +17,21 @@ app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 def connect_database():
     connection = sqlite3.connect(DATABASE)
     connection.row_factory = sqlite3.Row
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS reports (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            category TEXT NOT NULL,
+            description TEXT NOT NULL,
+            location TEXT NOT NULL,
+            priority TEXT NOT NULL,
+            photo TEXT,
+            status TEXT NOT NULL DEFAULT 'Submitted'
+        )
+    """)
+
+    connection.commit()
     return connection
 
 
