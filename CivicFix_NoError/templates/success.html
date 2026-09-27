@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Report Submitted{% endblock %}
+
+{% block content %}
+<section class="center">
+    <div class="success">
+        <div class="check">✓</div>
+        <p class="tag">SUCCESS</p>
+        <h1>Report submitted!</h1>
+        <p>Save this Report ID to track your issue.</p>
+        <div class="report-id">CF-{{ report_id }}</div>
+        <a class="button" href="/track">Track Report</a>
+    </div>
+</section>
+{% endblock %}
