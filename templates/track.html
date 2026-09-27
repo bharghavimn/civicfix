@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Track Report{% endblock %}
+
+{% block content %}
+<section class="page">
+    <p class="tag">TRACK</p>
+    <h1>Track your report</h1>
+
+    <form class="search" method="POST">
+        <input type="number" name="report_id" placeholder="Enter Report ID, e.g. 1" required>
+        <button class="button" type="submit">Search</button>
+    </form>
+
+    {% if searched and not report %}
+    <div class="error">No report found with that ID.</div>
+    {% endif %}
+
+    {% if report %}
+    <div class="result">
+        <div class="result-top">
+            <div>
+                <p class="tag">REPORT #{{ report["id"] }}</p>
+                <h2>{{ report["title"] }}</h2>
+            </div>
+            <span class="status">{{ report["status"] }}</span>
+        </div>
+
+        <p><b>Category:</b> {{ report["category"] }}</p>
+        <p><b>Priority:</b> {{ report["priority"] }}</p>
+        <p><b>Location:</b> {{ report["location"] }}</p>
+        <p><b>Description:</b> {{ report["description"] }}</p>
+
+        {% if report["photo"] %}
+        <h3>Uploaded picture</h3>
+        <img class="photo" src="{{ url_for('uploaded_file', filename=report['photo']) }}">
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
