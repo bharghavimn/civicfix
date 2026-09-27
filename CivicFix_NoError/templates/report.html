@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Report Issue{% endblock %}
+
+{% block content %}
+<section class="page">
+    <p class="tag">REPORT AN ISSUE</p>
+    <h1>Tell us about the problem</h1>
+    <p class="muted">Add a picture if you have one. It is optional.</p>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form class="form" method="POST" enctype="multipart/form-data">
+
+        <label>Issue title</label>
+        <input type="text" name="title" placeholder="Example: Pothole near college" required>
+
+        <div class="two">
+            <div>
+                <label>Category</label>
+                <select name="category" required>
+                    <option value="">Select</option>
+                    <option>Roads & Potholes</option>
+                    <option>Waste & Garbage</option>
+                    <option>Streetlights</option>
+                    <option>Water & Drainage</option>
+                    <option>Accessibility</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Priority</label>
+                <select name="priority" required>
+                    <option value="">Select</option>
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
+        </div>
+
+        <label>Description</label>
+        <textarea name="description" rows="5" placeholder="Describe the problem..." required></textarea>
+
+        <label>Location</label>
+        <input type="text" name="location" placeholder="Example: Yelahanka, Bengaluru" required>
+
+        <label>Upload picture</label>
+        <input type="file" name="photo" accept="image/png,image/jpeg,image/gif,image/webp">
+        <p class="hint">JPG, JPEG, PNG, GIF or WEBP • Maximum 5 MB</p>
+
+        <button class="button" type="submit">Submit Report</button>
+    </form>
+</section>
+{% endblock %}

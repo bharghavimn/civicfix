@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}CivicFix{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="tag">SMART CIVIC REPORTING</p>
+        <h1>Report a problem.<br><span>Make your area better.</span></h1>
+        <p class="intro">
+            Report potholes, garbage, broken streetlights, drainage problems
+            and other civic issues with a simple form and photo evidence.
+        </p>
+        <a class="button" href="/report">Report an Issue</a>
+        <a class="button white" href="/track">Track Report</a>
+    </div>
+
+    <div class="hero-box">
+        <div class="check">✓</div>
+        <h2>Easy reporting</h2>
+        <p>Upload a picture, describe the issue and receive a Report ID.</p>
+    </div>
+</section>
+
+<section class="section">
+    <p class="tag">HOW IT WORKS</p>
+    <h2>Three simple steps</h2>
+
+    <div class="cards">
+        <div class="card"><b>01</b><h3>Report</h3><p>Enter the issue details and upload a photo.</p></div>
+        <div class="card"><b>02</b><h3>Track</h3><p>Use your Report ID to check its status.</p></div>
+        <div class="card"><b>03</b><h3>Resolve</h3><p>The admin can update the issue status.</p></div>
+    </div>
+</section>
+{% endblock %}

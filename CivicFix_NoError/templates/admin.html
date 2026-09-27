@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="page wide">
+    <p class="tag">ADMIN DASHBOARD</p>
+    <h1>All civic reports</h1>
+
+    <div class="table-wrap">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Issue</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Priority</th>
+                <th>Picture</th>
+                <th>Status</th>
+            </tr>
+
+            {% for report in reports %}
+            <tr>
+                <td>CF-{{ report["id"] }}</td>
+                <td>{{ report["title"] }}</td>
+                <td>{{ report["category"] }}</td>
+                <td>{{ report["location"] }}</td>
+                <td>{{ report["priority"] }}</td>
+
+                <td>
+                    {% if report["photo"] %}
+                    <a href="{{ url_for('uploaded_file', filename=report['photo']) }}" target="_blank">View</a>
+                    {% else %}
+                    No picture
+                    {% endif %}
+                </td>
+
+                <td>
+                    <form method="POST" action="{{ url_for('update_status', report_id=report['id']) }}">
+                        <select name="status" onchange="this.form.submit()">
+                            <option {% if report["status"] == "Submitted" %}selected{% endif %}>Submitted</option>
+                            <option {% if report["status"] == "Under Review" %}selected{% endif %}>Under Review</option>
+                            <option {% if report["status"] == "In Progress" %}selected{% endif %}>In Progress</option>
+                            <option {% if report["status"] == "Resolved" %}selected{% endif %}>Resolved</option>
+                        </select>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="7">No reports yet.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+{% endblock %}
